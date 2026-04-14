@@ -1,14 +1,14 @@
 import "dotenv/config";
-import { z } from "zod";
+import { envSchema } from "./schema";
 
-const schema = z.object({
-    PORT: z.coerce.number().positive().default(8080),
-    SOL_RESERVE_ADDRESS: z.string().regex(/^[1-9A-HJ-NP-Za-km-z]+$/, "Invalid Base58 string").default("HTYGxbXeurLZuxyCjB55fxQuvk3p2iwB6Fz3XHZLaQ1z")
-});
-
-const parsed = schema.parse(process.env);
+const parsed = envSchema.parse(process.env);
 
 export const config = {
     port: parsed.PORT,
-    solReserveAddress: parsed.SOL_RESERVE_ADDRESS
+    solReserveAddress: parsed.SOL_RESERVE_ADDRESS,
+    auth_secret: parsed.AUTH_SECRET,
+    token_mint_address: parsed.TOKEN_MINT,
+    mint_authority: parsed.MINT_AUTHORITY,
+    mint_authority_private_key: parsed.MINT_AUTHORITY_PRIVATE_KEY,
+    rpc_url: parsed.HELIUS_RPC_URL
 }
