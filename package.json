@@ -1,17 +1,20 @@
 {
   "name": "lst-platform-centralized",
-  "module": "src/server.ts",
+  "module": "src/main.ts",
   "type": "module",
   "private": true,
   "scripts": {
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "tsc --noEmit --watch",
-    "dev": "bun run --watch src/main.ts",
+    "dev:worker": "bun run src/worker.ts",
+    "dev:api": "bun run src/main.ts",
+    "dev": "concurrently \"bun run src/main.ts\" \"bun run src/worker.ts\"",
     "start": "bun run src/main.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
+    "concurrently": "^9.2.1"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -20,6 +23,7 @@
     "@solana/spl-token": "^0.4.14",
     "@solana/web3.js": "^1.98.4",
     "bs58": "^6.0.0",
+    "bullmq": "^5.74.1",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "zod": "^4.3.6"

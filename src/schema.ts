@@ -7,7 +7,9 @@ export const envSchema = z.object({
     TOKEN_MINT: z.string().regex(/^[1-9A-HJ-NP-Za-km-z]+$/, "Invalid Base58 string"),
     MINT_AUTHORITY: z.string().regex(/^[1-9A-HJ-NP-Za-km-z]+$/, "Invalid Base58 string"),
     MINT_AUTHORITY_PRIVATE_KEY: z.string().regex(/^[1-9A-HJ-NP-Za-km-z]+$/, "Invalid Base58 string"),
-    HELIUS_RPC_URL: z.url()
+    HELIUS_RPC_URL: z.url(),
+    REDIS_HOST: z.ipv4(),
+    REDIS_PORT: z.coerce.number().positive().default(6379)
 });
 
 export const nativeTransfersSchema = z.array(z.object({
