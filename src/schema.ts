@@ -1,14 +1,13 @@
 import { z } from "zod";
 
 export const envSchema = z.object({
-    PORT: z.coerce.number().positive().default(8080),
+    PORT: z.coerce.number().positive().default(3000),
     AUTH_SECRET: z.base64(),
     SOL_RESERVE_ADDRESS: z.string().regex(/^[1-9A-HJ-NP-Za-km-z]+$/, "Invalid Base58 string"),
     TOKEN_MINT: z.string().regex(/^[1-9A-HJ-NP-Za-km-z]+$/, "Invalid Base58 string"),
-    MINT_AUTHORITY: z.string().regex(/^[1-9A-HJ-NP-Za-km-z]+$/, "Invalid Base58 string"),
     MINT_AUTHORITY_PRIVATE_KEY: z.string().regex(/^[1-9A-HJ-NP-Za-km-z]+$/, "Invalid Base58 string"),
     HELIUS_RPC_URL: z.url(),
-    REDIS_HOST: z.ipv4(),
+    REDIS_HOST: z.ipv4().default('127.0.0.1'),
     REDIS_PORT: z.coerce.number().positive().default(6379)
 });
 

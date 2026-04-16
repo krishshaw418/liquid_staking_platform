@@ -9,7 +9,7 @@
     "dev:worker": "bun run src/worker.ts",
     "dev:api": "bun run src/main.ts",
     "dev": "concurrently \"bun run src/main.ts\" \"bun run src/worker.ts\"",
-    "start": "bun run src/main.ts"
+    "start": "concurrently \"bun run src/main.ts\" \"bun run src/worker.ts\""
   },
   "devDependencies": {
     "@types/bun": "latest",
